@@ -4,157 +4,432 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Network - Home</title>
-    <!-- Carregando o Tailwind CSS -->
+    <title>Fome Zero - MVP</title>
+    <!-- Carrega o Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuração de fontes e cores customizadas -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Paleta de cores focada em "alimento"
+                        'brand-primary': '#F59E0B', // Amarelo/Laranja (ex: queijo, pão)
+                        'brand-secondary': '#D97706', // Laranja escuro (ex: molho)
+                        'brand-accent': '#DC2626', // Vermelho (ex: ketchup, tomate)
+                        'brand-surface': '#FFFBF5', // Um branco-creme (cor de pão/massa)
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Importa a fonte Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* Estilo para simular a safe area e a barra de navegação de um celular */
+        /* Estilo base para garantir a fonte e o fundo */
         body {
-            background-color: #f0f2f5;
-            /* Fundo cinza claro */
             font-family: 'Inter', sans-serif;
+            background-color: #F3F4F6;
+            /* Fundo cinza claro para destacar o app */
         }
 
-        .mobile-screen {
-            max-width: 400px;
-            /* Largura de um celular comum */
+        /* Esconde as páginas por padrão */
+        .page {
+            display: none;
+        }
+
+        /* Mostra a página ativa */
+        .page.active {
+            display: block;
+        }
+
+        /* Força a altura mínima para simular a tela cheia do app */
+        .app-container {
             min-height: 100vh;
-            /* Altura total */
-            margin: 0 auto;
-            background-color: #ffffff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
         }
 
-        .content {
-            flex-grow: 1;
-            padding-bottom: 80px;
-            /* Espaço para a barra de navegação inferior */
+        /* Classe para desabilitar scrollbar */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
         }
 
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            max-width: 400px;
-            margin: 0 auto;
-            border-top: 1px solid #e5e7eb;
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
         }
     </style>
 </head>
 
 <body class="bg-gray-100">
 
-    <!-- Simulação da tela do celular -->
-    <div class="mobile-screen">
+    <!-- 
+      Container principal do App
+      Simula a tela de um celular, centralizado na tela (ótimo para apresentação)
+    -->
+    <div id="app-container" class="max-w-md mx-auto bg-brand-surface shadow-2xl relative app-container overflow-hidden">
 
-        <!-- Cabeçalho Superior -->
-        <header class="flex items-center justify-between p-4 border-b border-gray-200">
-            <h1 class="text-2xl font-bold text-gray-800">Welcome!</h1>
-            <!-- Ícone de Busca -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="w-6 h-6 text-gray-600">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-            </svg>
-        </header>
+        <!-- =================================================================== -->
+        <!-- PÁGINA 1: HOME (LISTA DE VENDEDORES) [RF03]                         -->
+        <!-- =================================================================== -->
+        <div id="page-home" class="page active">
+            <!-- Header da Home -->
+            <header class="p-4 sticky top-0 bg-brand-surface/80 backdrop-blur-sm z-10 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-2xl font-bold text-gray-800">Fome Zero <span class="text-brand-primary">APP</span>
+                    </h1>
+                    <!-- Ícone de busca (Mock) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6 text-gray-500">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                </div>
+                <p class="text-gray-600">Encontre o melhor lanche no campus!</p>
+            </header>
 
-        <!-- Conteúdo Principal -->
-        <main class="content p-4">
-            <h2 class="text-lg font-semibold text-gray-700 mb-4">Nearby Vendors</h2>
+            <!-- Conteúdo da Home -->
+            <main class="p-4 pb-24 space-y-4">
+                <h2 class="text-xl font-semibold text-gray-700">Vendedores Próximos</h2>
 
-            <!-- Lista de Vendedores (Mockado) -->
-            <div class="space-y-4">
+                <!-- 
+                  Container dos Vendedores
+                  Os dados são preenchidos dinamicamente pelo JS
+                -->
+                <div id="vendor-list" class="space-y-4">
+                    <!-- Cards de vendedores serão injetados aqui -->
+                </div>
+            </main>
+        </div>
 
-                <!-- Card do Vendedor 1: Lanchonete da Maria (Link para v.html) -->
-                <a href="v.html?id=1"
-                    class="block bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
-                    <div class="flex items-center p-4">
-                        <img src="https://placehold.co/80x80/EFEFEF/333?text=Logo" alt="Logo da Lanchonete"
-                            class="w-20 h-20 rounded-full object-cover mr-4">
-                        <div class="flex-1">
-                            <h3 class="text-lg font-bold text-gray-900">Lanchonete da Maria</h3>
-                            <p class="text-sm text-gray-600">Cantina Central</p>
-                            <!-- Sistema de Avaliação (Estrelas) -->
-                            <div class="flex items-center mt-1">
-                                <span class="text-yellow-500">★★★★</span><span class="text-gray-400">★</span>
-                                <span class="text-xs text-gray-500 ml-2">(120)</span>
-                            </div>
+        <!-- =================================================================== -->
+        <!-- PÁGINA 2: PERFIL DO VENDEDOR / CARDÁPIO [RF02]                      -->
+        <!-- =================================================================== -->
+        <div id="page-vendor" class="page">
+            <!-- Header do Vendedor (preenchido por JS) -->
+            <header
+                class="p-4 sticky top-0 bg-brand-surface/80 backdrop-blur-sm z-10 border-b border-gray-200 flex items-center space-x-3">
+                <button onclick="showPage('page-home')" class="p-1 rounded-full hover:bg-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" class="w-6 h-6 text-gray-700">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                <h1 id="vendor-name-header" class="text-xl font-bold text-gray-800"></h1>
+            </header>
+
+            <!-- Conteúdo do Perfil -->
+            <main class="pb-24">
+                <!-- Info do Vendedor (preenchido por JS) -->
+                <div id="vendor-profile-info" class="p-4 text-center">
+                    <img id="vendor-profile-image" src="" alt="Logo do Vendedor"
+                        class="w-24 h-24 rounded-full mx-auto object-cover border-4 border-white shadow-lg">
+                    <h2 id="vendor-profile-name" class="text-2xl font-bold mt-2 text-gray-900"></h2>
+                    <p id="vendor-profile-category" class="text-gray-600"></p>
+                    <div class="flex justify-center items-center mt-2 space-x-1">
+                        <span id="vendor-profile-rating" class="font-bold text-gray-800"></span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                            class="w-5 h-5 text-yellow-400">
+                            <path fill-rule="evenodd"
+                                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.006Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">Horário: 9:00 - 18:00 (Mockado)</p>
+                </div>
+
+                <!-- Cardápio -->
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">Cardápio</h3>
+                    <div id="vendor-menu-list" class="space-y-3">
+                        <!-- Itens do cardápio serão injetados aqui -->
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- PÁGINA 3: DETALHES DO PRODUTO                                         -->
+        <!-- =================================================================== -->
+        <div id="page-product" class="page">
+            <!-- Header do Produto (preenchido por JS) -->
+            <header class="p-4 sticky top-0 bg-brand-surface/80 backdrop-blur-sm z-10 flex items-center space-x-3">
+                <!-- O onclick deste botão é configurado dinamicamente pelo JS -->
+                <button id="product-back-button" class="p-1 rounded-full hover:bg-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" class="w-6 h-6 text-gray-700">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                <h1 id="product-name-header" class="text-xl font-bold text-gray-800 truncate"></h1>
+            </header>
+
+            <!-- Conteúdo do Produto -->
+            <main class="pb-24">
+                <img id="product-image" src="" alt="Foto do Produto" class="w-full h-64 object-cover">
+
+                <div class="p-4 space-y-4">
+                    <h2 id="product-name" class="text-3xl font-bold text-gray-900"></h2>
+                    <p id="product-price" class="text-2xl font-bold text-green-700"></p>
+                    <p id="product-description" class="text-gray-600"></p>
+
+                    <!-- Opções Mockadas (como no protótipo) -->
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Sabor (Mockado)</h4>
+                        <div class="flex space-x-2">
+                            <span class="px-4 py-2 bg-brand-primary text-white rounded-full font-medium">Frango</span>
+                            <span class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full font-medium">Carne</span>
+                            <span class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full font-medium">Queijo</span>
                         </div>
                     </div>
-                </a>
 
-                <!-- Card do Vendedor 2: The Daily Grind (Link para v.html) -->
-                <a href="v.html?id=2"
-                    class="block bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
-                    <div class="flex items-center p-4">
-                        <img src="https://placehold.co/80x80/EFEFEF/333?text=Café" alt="Logo do Café"
-                            class="w-20 h-20 rounded-full object-cover mr-4">
-                        <div class="flex-1">
-                            <h3 class="text-lg font-bold text-gray-900">The Daily Grind</h3>
-                            <p class="text-sm text-gray-600">Bloco B, Térreo</p>
-                            <div class="flex items-center mt-1">
-                                <span class="text-yellow-500">★★★★★</span>
-                                <span class="text-xs text-gray-500 ml-2">(85)</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Card do Vendedor 3: Spice Route Bistro -->
-                <div class="block bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden opacity-60">
-                    <div class="flex items-center p-4">
-                        <img src="https://placehold.co/80x80/EFEFEF/333?text=Bistrô" alt="Logo do Bistrô"
-                            class="w-20 h-20 rounded-full object-cover mr-4">
-                        <div class="flex-1">
-                            <h3 class="text-lg font-bold text-gray-900">Spice Route Bistro</h3>
-                            <p class="text-sm text-gray-600">Praça de Alimentação</p>
-                            <div class="flex items-center mt-1">
-                                <span class="text-yellow-500">★★★★</span><span class="text-gray-400">★</span>
-                                <span class="text-xs text-gray-500 ml-2">(45)</span>
-                            </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Tamanho (Mockado)</h4>
+                        <div class="flex space-x-2">
+                            <span class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full font-medium">Pequeno</span>
+                            <span class="px-4 py-2 bg-brand-primary text-white rounded-full font-medium">Médio</span>
+                            <span class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full font-medium">Grande</span>
                         </div>
                     </div>
                 </div>
+            </main>
 
-            </div>
-        </main>
+            <!-- Botão de Ação Fixo -->
+            <footer class="absolute bottom-0 left-0 right-0 p-4 bg-brand-surface border-t border-gray-200 pb-20">
+                <button
+                    class="w-full bg-brand-accent text-white font-bold py-4 rounded-lg shadow-lg hover:bg-red-700 transition-colors">
+                    Entrar em Contato com Vendedor
+                </button>
+            </footer>
+        </div>
 
-        <!-- Barra de Navegação Inferior -->
-        <nav class="bottom-nav bg-white shadow-inner flex justify-around p-3">
+
+        <!-- =================================================================== -->
+        <!-- BARRA DE NAVEGAÇÃO INFERIOR (MOCK)                                  -->
+        <!-- =================================================================== -->
+        <nav
+            class="fixed bottom-0 left-0 right-0 max-w-md mx-auto h-16 bg-white border-t border-gray-200 flex justify-around items-center z-20">
             <!-- Home (Ativo) -->
-            <a href="index.html" class="flex flex-col items-center text-blue-600">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            <button onclick="showPage('page-home')" class="flex flex-col items-center text-brand-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                    <path
+                        d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+                    <path
+                        d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
                 </svg>
                 <span class="text-xs font-medium">Home</span>
-            </a>
-            <!-- Favoritos -->
-            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-gray-700">
+            </button>
+
+            <!-- Favoritos (Mock - Desabilitado) -->
+            <button class="flex flex-col items-center text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.31h5.513c.49 0 .69.658.309.957l-4.47 3.352a.563.563 0 0 0-.18.517l1.636 5.023a.562.562 0 0 1-.84.62l-4.636-3.41a.563.563 0 0 0-.656 0l-4.635 3.41a.562.562 0 0 1-.84-.62l1.636-5.023a.563.563 0 0 0-.18-.517l-4.47-3.352c-.38-.298-.18-.957.31-.957h5.513a.563.563 0 0 0 .475-.31l2.125-5.111Z" />
+                        d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.31h5.518a.562.562 0 0 1 .31.95l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.021a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 21.2a.562.562 0 0 1-.84-.61l1.285-5.021a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .31-.95h5.518a.563.563 0 0 0 .475-.31L11.48 3.5Z" />
                 </svg>
-                <span class="text-xs font-medium">Favorites</span>
-            </a>
-            <!-- Perfil -->
-            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-gray-700">
+                <span class="text-xs font-medium">Favoritos</span>
+            </button>
+
+            <!-- Perfil (Mock - Desabilitado) -->
+            <button class="flex flex-col items-center text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A1.875 1.875 0 0 1 17.624 22H6.375a1.875 1.875 0 0 1-1.873-1.882Z" />
                 </svg>
-                <span class="text-xs font-medium">Profile</span>
-            </a>
+                <span class="text-xs font-medium">Perfil</span>
+            </button>
         </nav>
 
-    </div>
+    </div> <!-- Fim do #app-container -->
 
+
+    <!-- =================================================================== -->
+    <!-- JAVASCRIPT - DADOS MOCKADOS E LÓGICA DE NAVEGAÇÃO                  -->
+    <!-- =================================================================== -->
+    <script>
+        // --- DADOS MOCKADOS (Simulação do Backend) ---
+        const mockData = {
+            vendors: [
+                {
+                    id: 1,
+                    name: "Lanchonete da Maria",
+                    category: "Salgados e sucos naturais",
+                    location: "Cantina Central",
+                    rating: 4.8,
+                    imageUrl: "https://placehold.co/100x100/F59E0B/333333?text=Maria",
+                    menu: [
+                        { id: 101, name: "Coxinha de Frango", description: "Croccante e saborosa, recheio cremoso!", price: 6.00, imageUrl: "https://placehold.co/600x400/FBBF24/333333?text=Coxinha" },
+                        { id: 102, name: "Empada de Queijo", description: "Massa leve e recheio cremoso.", price: 5.50, imageUrl: "https://placehold.co/600x400/FBBF24/333333?text=Empada" },
+                        { id: 103, name: "Suco Verde Detox", description: "Com couve, gengibre e maçã.", price: 8.00, imageUrl: "https://placehold.co/600x400/22C55E/FFFFFF?text=Suco" },
+                        { id: 104, name: "Sanduíche Integral", description: "Pão integral, queijo branco, peito de peru e alface.", price: 12.00, imageUrl: "https://placehold.co/600x400/FBBF24/333333?text=Sanduiche" },
+                    ]
+                },
+                {
+                    id: 2,
+                    name: "Doces da Tia Jô",
+                    category: "Bolos, tortas e brigadeiros",
+                    location: "Próximo à Biblioteca",
+                    rating: 4.9,
+                    imageUrl: "https://placehold.co/100x100/D97706/FFFFFF?text=Jô",
+                    menu: [
+                        { id: 201, name: "Bolo de Pote (Chocolate)", description: "Massa fofinha e muito recheio de brigadeiro.", price: 10.00, imageUrl: "https://placehold.co/600x400/854D0E/FFFFFF?text=Bolo+Pote" },
+                        { id: 202, name: "Brigadeiro Gourmet", description: "Unidade do melhor brigadeiro do campus.", price: 3.50, imageUrl: "https://placehold.co/600x400/854D0E/FFFFFF?text=Brigadeiro" },
+                        { id: 203, name: "Torta de Limão (Fatia)", description: "Massa crocante com recheio azedinho na medida certa.", price: 9.00, imageUrl: "https://placehold.co/600x400/BEF264/333333?text=Torta" },
+                    ]
+                },
+                {
+                    id: 3,
+                    name: "Açaí do Bloco C",
+                    category: "Açaí e cremes",
+                    location: "Bloco C, Térreo",
+                    rating: 4.5,
+                    imageUrl: "https://placehold.co/100x100/86198F/FFFFFF?text=Açaí",
+                    menu: [
+                        { id: 301, name: "Açaí 500ml (Completo)", description: "Açaí puro com banana, granola, leite em pó e leite condensado.", price: 18.00, imageUrl: "https://placehold.co/600x400/581C87/FFFFFF?text=Açaí" },
+                        { id: 302, name: "Creme de Cupuaçu 300ml", description: "O verdadeiro sabor do cupuaçu.", price: 12.00, imageUrl: "https://placehold.co/600x400/FDE047/333333?text=Cupuaçu" },
+                    ]
+                }
+            ]
+        };
+
+        // --- LÓGICA DE NAVEGAÇÃO ---
+
+        // Função para formatar preço
+        const formatCurrency = (value) => {
+            return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        };
+
+        // Função para gerar estrelas de avaliação
+        const getRatingStars = (rating) => {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const halfStar = rating % 1 >= 0.5;
+
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.006Z" clip-rule="evenodd" /></svg>';
+            }
+            // (Para este MVP, vamos simplificar e usar apenas estrelas cheias)
+            return stars;
+        };
+
+        // Função principal para trocar de página
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            // Rola para o topo da nova página
+            document.getElementById('app-container').scrollTop = 0;
+        }
+
+        // Função para mostrar o perfil de um vendedor
+        function showVendor(vendorId) {
+            const vendor = mockData.vendors.find(v => v.id === vendorId);
+            if (!vendor) return;
+
+            // Preenche o header
+            document.getElementById('vendor-name-header').innerText = vendor.name;
+
+            // Preenche as infos do perfil
+            document.getElementById('vendor-profile-image').src = vendor.imageUrl;
+            document.getElementById('vendor-profile-name').innerText = vendor.name;
+            document.getElementById('vendor-profile-category').innerText = vendor.category;
+            document.getElementById('vendor-profile-rating').innerText = vendor.rating.toFixed(1);
+
+            // Preenche o cardápio
+            const menuList = document.getElementById('vendor-menu-list');
+            menuList.innerHTML = ''; // Limpa o cardápio anterior
+
+            vendor.menu.forEach(item => {
+                menuList.innerHTML += `
+                    <div 
+                        class="flex items-center space-x-3 bg-white p-3 rounded-lg shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-shadow"
+                        onclick="showProduct(${item.id}, ${vendor.id})"
+                    >
+                        <img src="${item.imageUrl}" alt="${item.name}" class="w-20 h-20 rounded-md object-cover">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-gray-800">${item.name}</h4>
+                            <p class="text-sm text-gray-500 truncate">${item.description}</p>
+                            <p class="font-bold text-green-700 mt-1">${formatCurrency(item.price)}</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-gray-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </div>
+                `;
+            });
+
+            // Mostra a página
+            showPage('page-vendor');
+        }
+
+        // Função para mostrar os detalhes de um produto
+        function showProduct(productId, vendorId) {
+            const vendor = mockData.vendors.find(v => v.id === vendorId);
+            const product = vendor.menu.find(p => p.id === productId);
+            if (!product) return;
+
+            // Preenche as infos do produto
+            document.getElementById('product-name-header').innerText = product.name;
+            document.getElementById('product-image').src = product.imageUrl;
+            document.getElementById('product-name').innerText = product.name;
+            document.getElementById('product-price').innerText = formatCurrency(product.price);
+            document.getElementById('product-description').innerText = product.description;
+
+            // Configura o botão "Voltar" para voltar para o vendedor correto
+            document.getElementById('product-back-button').setAttribute('onclick', `showVendor(${vendorId})`);
+
+            // Mostra a página
+            showPage('page-product');
+        }
+
+        // Função para inicializar a Home Page
+        function initHome() {
+            const vendorList = document.getElementById('vendor-list');
+            vendorList.innerHTML = ''; // Limpa a lista
+
+            mockData.vendors.forEach(vendor => {
+                vendorList.innerHTML += `
+                    <div 
+                        class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 cursor-pointer hover:shadow-lg transition-shadow"
+                        onclick="showVendor(${vendor.id})"
+                    >
+                        <div class="flex items-center space-x-4 p-4">
+                            <img src="${vendor.imageUrl}" alt="${vendor.name}" class="w-20 h-20 rounded-lg object-cover">
+                            <div class="flex-1">
+                                <h3 class="text-lg font-bold text-gray-800">${vendor.name}</h3>
+                                <p class="text-sm text-gray-500">${vendor.category}</p>
+                                <p class="text-sm text-gray-500">${vendor.location}</p>
+                                <div class="flex items-center mt-2">
+                                    <span class="font-bold text-gray-800">${vendor.rating.toFixed(1)}</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-yellow-400 ml-1">
+                                        <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.006Z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-gray-400">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Inicializa o app quando a página carregar
+        document.addEventListener('DOMContentLoaded', initHome);
+
+    </script>
 </body>
 
 </html>
