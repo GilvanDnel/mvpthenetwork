@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Network - Vendedor</title>
+    <!-- Carregando o Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .mobile-screen {
+            max-width: 400px;
+            min-height: 100vh;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding-bottom: 80px;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 400px;
+            margin: 0 auto;
+            border-top: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Simulação da tela do celular -->
+    <div class="mobile-screen">
+
+        <!-- Cabeçalho Superior -->
+        <header class="flex items-center p-4 border-b border-gray-200">
+            <!-- Botão Voltar -->
+            <a href="index.html" class="text-gray-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                </svg>
+            </a>
+            <!-- Título da Página (será preenchido pelo JS) -->
+            <h1 id="vendor-name-header" class="text-xl font-bold text-gray-800 text-center flex-1">...</h1>
+            <div class="w-6"></div> <!-- Espaçador para centralizar o título -->
+        </header>
+
+        <!-- Conteúdo Principal -->
+        <main class="content">
+            <!-- Informações do Vendedor -->
+            <div class="p-4 border-b border-gray-200">
+                <div class="flex items-center">
+                    <img id="vendor-image" src="https://placehold.co/100x100/EFEFEF/333?text=Logo"
+                        alt="Logo do Vendedor" class="w-24 h-24 rounded-full object-cover mr-4">
+                    <div>
+                        <h2 id="vendor-name-main" class="text-2xl font-bold text-gray-900">...</h2>
+                        <p id="vendor-desc" class="text-sm text-gray-600">...</p>
+                        <div class="flex items-center mt-1">
+                            <span id="vendor-rating" class="text-yellow-500">★★★★</span><span
+                                class="text-gray-400">★</span>
+                        </div>
+                        <p id="vendor-hours" class="text-xs text-gray-500 mt-1">Horário: 9:00 - 18:00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cardápio -->
+            <div class="p-4">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">Cardápio</h3>
+
+                <!-- Lista de Produtos (será preenchida pelo JS) -->
+                <div id="menu-items" class="space-y-3">
+                    <!-- O JS vai inserir os itens aqui -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Barra de Navegação Inferior -->
+        <nav class="bottom-nav bg-white shadow-inner flex justify-around p-3">
+            <a href="index.html" class="flex flex-col items-center text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                </svg>
+                <span class="text-xs font-medium">Home</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.31h5.513c.49 0 .69.658.309.957l-4.47 3.352a.563.563 0 0 0-.18.517l1.636 5.023a.562.562 0 0 1-.84.62l-4.636-3.41a.563.563 0 0 0-.656 0l-4.635 3.41a.562.562 0 0 1-.84-.62l1.636-5.023a.563.563 0 0 0-.18-.517l-4.47-3.352c-.38-.298-.18-.957.31-.957h5.513a.563.563 0 0 0 .475-.31l2.125-5.111Z" />
+                </svg>
+                <span class="text-xs font-medium">Favorites</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
+                <span class="text-xs font-medium">Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // Dados Mockados (Simulando um Back-end)
+        const mockData = {
+            "1": {
+                name: "Lanchonete da Maria",
+                description: "Salgados e sucos naturais",
+                hours: "9:00 - 18:00",
+                rating: "★★★★",
+                image: "https://placehold.co/100x100/EFEFEF/333?text=Maria",
+                menu: [
+                    { id: 101, name: "Coxinha de Frango", price: "R$ 6,00", desc: "Croccante e saborosa!", img: "https://placehold.co/60x60/EFEFEF/333?text=Coxinha" },
+                    { id: 102, name: "Empada de Queijo Natural", price: "R$ 10,00", desc: "Massa leve e recheio cremoso", img: "https://placehold.co/60x60/EFEFEF/333?text=Empada" },
+                    { id: 103, name: "Sanduíche Integral", price: "R$ 12,00", desc: "Mel-tute Fanda", img: "https://placehold.co/60x60/EFEFEF/333?text=Sanduiche" },
+                    { id: 104, name: "Smoothie Verde Detox", price: "R$ 15,00", desc: "Com couve, gengibre e maçã", img: "https://placehold.co/60x60/EFEFEF/333?text=Detox" }
+                ]
+            },
+            "2": {
+                name: "The Daily Grind",
+                description: "Cafés especiais e grãos",
+                hours: "8:00 - 17:00",
+                rating: "★★★★★",
+                image: "https://placehold.co/100x100/EFEFEF/333?text=Café",
+                menu: [
+                    { id: 201, name: "Espresso Duplo", price: "R$ 8,00", desc: "Grãos selecionados", img: "https://placehold.co/60x60/EFEFEF/333?text=Espresso" },
+                    { id: 202, name: "Capuccino Italiano", price: "R$ 12,00", desc: "Cremoso e tradicional", img: "https://placehold.co/60x60/EFEFEF/333?text=Capuccino" }
+                ]
+            }
+        };
+
+        // Função para carregar os dados na página
+        document.addEventListener('DOMContentLoaded', () => {
+            // Pega o ID do vendedor da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const vendorId = urlParams.get('id') || '1'; // Padrão é '1' se não houver ID
+
+            const vendor = mockData[vendorId] || mockData['1']; // Pega o dado ou usa o padrão
+
+            // Preenche as informações do Vendedor
+            document.getElementById('vendor-name-header').textContent = vendor.name;
+            document.getElementById('vendor-name-main').textContent = vendor.name;
+            document.getElementById('vendor-desc').textContent = vendor.description;
+            document.getElementById('vendor-hours').textContent = `Horário: ${vendor.hours}`;
+            document.getElementById('vendor-rating').textContent = vendor.rating;
+            document.getElementById('vendor-image').src = vendor.image;
+
+            // Preenche o Cardápio
+            const menuContainer = document.getElementById('menu-items');
+            menuContainer.innerHTML = ''; // Limpa qualquer conteúdo de placeholder
+
+            vendor.menu.forEach(item => {
+                const menuItemHTML = `
+                    <a href="p.html?id=${item.id}" class="flex items-center bg-white p-3 rounded-lg border border-gray-100 shadow-sm hover:bg-gray-50 transition-colors duration-200">
+                        <img src="${item.img}" alt="${item.name}" class="w-16 h-16 rounded-md object-cover mr-4">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-gray-800">${item.name}</h4>
+                            <p class="text-sm text-gray-500 truncate">${item.desc}</p>
+                        </div>
+                        <span class="text-base font-bold text-gray-800">${item.price}</span>
+                    </a>
+                `;
+                menuContainer.innerHTML += menuItemHTML;
+            });
+        });
+    </script>
+
+</body>
+
+</html>

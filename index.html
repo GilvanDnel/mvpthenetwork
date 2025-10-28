@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Network - Home</title>
+    <!-- Carregando o Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilo para simular a safe area e a barra de navegação de um celular */
+        body {
+            background-color: #f0f2f5;
+            /* Fundo cinza claro */
+            font-family: 'Inter', sans-serif;
+        }
+
+        .mobile-screen {
+            max-width: 400px;
+            /* Largura de um celular comum */
+            min-height: 100vh;
+            /* Altura total */
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding-bottom: 80px;
+            /* Espaço para a barra de navegação inferior */
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 400px;
+            margin: 0 auto;
+            border-top: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Simulação da tela do celular -->
+    <div class="mobile-screen">
+
+        <!-- Cabeçalho Superior -->
+        <header class="flex items-center justify-between p-4 border-b border-gray-200">
+            <h1 class="text-2xl font-bold text-gray-800">Welcome!</h1>
+            <!-- Ícone de Busca -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6 text-gray-600">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+        </header>
+
+        <!-- Conteúdo Principal -->
+        <main class="content p-4">
+            <h2 class="text-lg font-semibold text-gray-700 mb-4">Nearby Vendors</h2>
+
+            <!-- Lista de Vendedores (Mockado) -->
+            <div class="space-y-4">
+
+                <!-- Card do Vendedor 1: Lanchonete da Maria (Link para v.html) -->
+                <a href="v.html?id=1"
+                    class="block bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
+                    <div class="flex items-center p-4">
+                        <img src="https://placehold.co/80x80/EFEFEF/333?text=Logo" alt="Logo da Lanchonete"
+                            class="w-20 h-20 rounded-full object-cover mr-4">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-900">Lanchonete da Maria</h3>
+                            <p class="text-sm text-gray-600">Cantina Central</p>
+                            <!-- Sistema de Avaliação (Estrelas) -->
+                            <div class="flex items-center mt-1">
+                                <span class="text-yellow-500">★★★★</span><span class="text-gray-400">★</span>
+                                <span class="text-xs text-gray-500 ml-2">(120)</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card do Vendedor 2: The Daily Grind (Link para v.html) -->
+                <a href="v.html?id=2"
+                    class="block bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
+                    <div class="flex items-center p-4">
+                        <img src="https://placehold.co/80x80/EFEFEF/333?text=Café" alt="Logo do Café"
+                            class="w-20 h-20 rounded-full object-cover mr-4">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-900">The Daily Grind</h3>
+                            <p class="text-sm text-gray-600">Bloco B, Térreo</p>
+                            <div class="flex items-center mt-1">
+                                <span class="text-yellow-500">★★★★★</span>
+                                <span class="text-xs text-gray-500 ml-2">(85)</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card do Vendedor 3: Spice Route Bistro -->
+                <div class="block bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden opacity-60">
+                    <div class="flex items-center p-4">
+                        <img src="https://placehold.co/80x80/EFEFEF/333?text=Bistrô" alt="Logo do Bistrô"
+                            class="w-20 h-20 rounded-full object-cover mr-4">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-900">Spice Route Bistro</h3>
+                            <p class="text-sm text-gray-600">Praça de Alimentação</p>
+                            <div class="flex items-center mt-1">
+                                <span class="text-yellow-500">★★★★</span><span class="text-gray-400">★</span>
+                                <span class="text-xs text-gray-500 ml-2">(45)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Barra de Navegação Inferior -->
+        <nav class="bottom-nav bg-white shadow-inner flex justify-around p-3">
+            <!-- Home (Ativo) -->
+            <a href="index.html" class="flex flex-col items-center text-blue-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                </svg>
+                <span class="text-xs font-medium">Home</span>
+            </a>
+            <!-- Favoritos -->
+            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.31h5.513c.49 0 .69.658.309.957l-4.47 3.352a.563.563 0 0 0-.18.517l1.636 5.023a.562.562 0 0 1-.84.62l-4.636-3.41a.563.563 0 0 0-.656 0l-4.635 3.41a.562.562 0 0 1-.84-.62l1.636-5.023a.563.563 0 0 0-.18-.517l-4.47-3.352c-.38-.298-.18-.957.31-.957h5.513a.563.563 0 0 0 .475-.31l2.125-5.111Z" />
+                </svg>
+                <span class="text-xs font-medium">Favorites</span>
+            </a>
+            <!-- Perfil -->
+            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
+                <span class="text-xs font-medium">Profile</span>
+            </a>
+        </nav>
+
+    </div>
+
+</body>
+
+</html>
