@@ -2,11 +2,16 @@
 
 Landing page simples criada como MVP visual para apresentar uma ideia, produto ou proposta de rede.
 
+## Acesse
+
+https://gilvandnel.github.io/mvpthenetwork/
+
 ## Tecnologias
 
 - HTML
+- GitHub Pages
 
-## Como visualizar
+## Como visualizar localmente
 
 Abra `index.html` em um navegador.
 
@@ -15,8 +20,8 @@ Abra `index.html` em um navegador.
 - `index.html`: pagina principal
 - `LICENSE`: licenca do repositorio
 
-## Proximos ajustes
+## Possiveis melhorias
 
 - Adicionar descricao mais clara da proposta.
 - Evoluir layout, responsividade e conteudo.
-- Publicar uma versao via GitHub Pages, se fizer sentido.
+- Incluir secoes de problema, solucao, publico-alvo e chamada para acao.
